@@ -46,18 +46,43 @@ function test(data) {
   var allButtons = document.querySelectorAll('button');
   var battleArea = document.querySelector('.battle-area');
   var opponentSelect = Math.floor(Math.random() * arrayOfCharacters.length);
-
-// create a div for both your character and opponent's character, put the info in there
-// have your div float/position left and opponents right. Put info on who won in middle
-// potentially in a third div
+  var playerOne = document.createElement('div');
+  playerOne.setAttribute('class', 'player-one');
+  var startBattle = document.createElement('div');
+  startBattle.setAttribute('class', 'start-battle');
+  var startBattleButton = document.createElement('button');
+  startBattle.append(startBattleButton);
+  startBattleButton.setAttribute('class', 'start-battle-button');
+  var playerTwo = document.createElement('div');
+  playerTwo.setAttribute('class', 'player-two');
 
   for (var j = 0; j < allButtons.length; j++) {
     allButtons[j].addEventListener("click", function() {
-      battleArea.innerHTML = '<img src="' + arrayOfCharacters[this.value].thumbnail.path + "." + arrayOfCharacters[this.value].thumbnail.extension + '" />';
-      battleArea.append("You chose: " + arrayOfCharacters[this.value].name)
-      battleArea.append("Your opponent chose: " + arrayOfCharacters[opponentSelect].name)
+      playerOne.innerHTML = '<img src="' + arrayOfCharacters[this.value].thumbnail.path + "." + arrayOfCharacters[this.value].thumbnail.extension + '" />';
+      playerOne.append("You chose: " + arrayOfCharacters[this.value].name)
+      battleArea.append(playerOne);
+      startBattleButton.append("Start the battle");
+      battleArea.append(startBattle);
+      playerTwo.innerHTML = '<img src="' + arrayOfCharacters[opponentSelect].thumbnail.path + "." + arrayOfCharacters[opponentSelect].thumbnail.extension + '" />';
+      playerTwo.append("Your opponent chose: " + arrayOfCharacters[opponentSelect].name)
+      battleArea.append(playerTwo);
     });
   }
+
+  startBattleButton.addEventListener("click", function() {
+    startBattle.removeChild(startBattleButton);
+    var resetButton = document.createElement('button')
+    resetButton.setAttribute('class', 'reset-button');
+    resetButton.append("Play again?");
+    var playerOneRoll = Math.floor(Math.random() * 100);
+    var playerTwoRoll = Math.floor(Math.random() * 100);
+    if (playerOneRoll >= playerTwoRoll) {
+      startBattle.append("You have defeated " + arrayOfCharacters[opponentSelect].name + "!");
+    } else {
+      startBattle.append("You have been defeated by " + arrayOfCharacters[opponentSelect].name);
+    }
+    startBattle.append(resetButton);
+  });
 }
 
 /*

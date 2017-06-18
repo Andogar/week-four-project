@@ -16,18 +16,25 @@ p, .info {
   margin: 0;
 }
 
-.battle-area {
-  margin-bottom: 20px;
-  font-size: 1.5rem;
-}
-
-.character-list, .battle-area{
+.character-list{
   display: flex;
   flex-wrap: wrap;
 }
 
-.character-select, .battle-area {
+.character-select {
   display: block;
+  width: 200px;
+  height: 250px;
+}
+
+.battle-area {
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.player-one, .player-two {
   width: 200px;
   height: 250px;
 }
@@ -35,4 +42,20 @@ p, .info {
 button {
   width: 100%;
   font-size: 1rem;
+}
+
+.start-battle {
+  width: 40%;
+  padding-top: 100px;
+  text-align: center;
+}
+
+.start-battle-button {
+  border: none;
+  height: 50px;
+}
+
+.reset-button {
+  width: 50%;
+  margin: 10px;
 }
